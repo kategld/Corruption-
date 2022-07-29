@@ -1,4 +1,4 @@
-#Find corruption in russian legal documents
+# Find corruption in russian legal documents
 
 According according [pravo.minjust.ru](http://pravo.minjust.ru/sites/default/files/documents/metod-materials/Metodicheskie_rekomendacii.pdf) there are 11 corruption factors:
  - Breadth of discretion / Широта дискреционных полномоций
