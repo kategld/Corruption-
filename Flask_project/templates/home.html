@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+        <title> Поиск коррупционных составляющих</title>
+    </head>
+    <body>
+        <header class="site-header">
+            <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+              <div class="container">
+                <a class="navbar-brand mr-4" href="/">Коррупционный поиск</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggle">
+                  <div class="navbar-nav mr-auto">
+                    <a class="nav-item nav-link" href="/">Home</a>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </header>
+          <h4 class="text-center">Загрузить файл для проверки:</h4><br>
+            <form class="p-2 text-center" id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+                <input class="form-contol" id="file-picker" type="file" name="doc_file" accept=".docx">
+                <div id="msg"></div>
+                <input class="btn btn-primary mt-3" type="submit" value="Обработать" id="upload-button">
+            </form>
+            {% if prediction %}
+                <!--input class="btn btn-primary mt-3" type="submit" action="{{ url_for('download') }}" value="Скачать обработанный документ" id="download-button"-->
+                <a href="{{url_for('download')}}"><p style="text-align:center"> Загрузить обработанный документ</p></a>
+            {% endif %}
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+    <script>
+
+        $("#file-picker").change(function(){
+    
+            var input = document.getElementById('file-picker');
+    
+            for (var i=0; i<input.files.length; i++)
+            {
+            //koala.jpg, koala.JPG substring(index) lastIndexOf('a') koala.1.jpg
+                var ext= input.files[i].name.substring(input.files[i].name.lastIndexOf('.')+1).toLowerCase()
+    
+                //if ((ext == 'jpg') || (ext == 'png'))
+                if (ext == 'docx')
+                {
+                    $("#msg").text("Формат поддерживается")
+                }
+                else
+                {
+                    $("#msg").text("Формат НЕ поддерживается")
+                    //document.getElementById("file-picker").value ="";
+                }
+    
+            }
+    
+    
+        } );
+    
+    </script>
+</html>
