@@ -12,4 +12,5 @@ According according [pravo.minjust.ru](http://pravo.minjust.ru/sites/default/fil
  - Excessive requirements / Наличие завышенных требований
  - Abuse of the Applicant's Right / Злоупотребление правом заявителя
  - Legal-linguistic uncertainty / Юридико-лингвистическая неопределенность 
+ 
 **Finding most of them have realized using pretratrained Bert and rule-based models.**
